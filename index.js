@@ -24,6 +24,19 @@
           distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
         return distance;
       },
+      updateVelocity(body, forceOnX, forceOnY) {
+  const
+    angle = body.rotation * Math.PI / 180,
+    accelerationOnX  = Math.cos(angle) * forceOnX,
+    accelerationOnY = Math.sin(angle) * forceOnY;
+  body.velocityX += accelerationOnX;
+  body.velocityY += accelerationOnY;
+},
+    updatePosition(body) {
+      body.x += body.velocityX;
+      body.y += body.velocityY;
+      body.rotation += body.rotationalVelocity;
+},
       /**
        * Returns an Object with basic properties utilized in a 
        * 2D physics system. On top of simple physical properties,
